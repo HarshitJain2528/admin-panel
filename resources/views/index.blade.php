@@ -1,8 +1,16 @@
 @extends('layout.main')
 	
 @section('login-form')
+
+<br>
+@if (session('success'))
+<div class="danger-alert">
+    {{ session('success') }}
+</div>
+@endif
 <br/>
-<form method="post">
+<form action="{{Route('login.post')}}" method="post">
+    {{ csrf_field() }}
     <!-- login table starts here -->
     <table class="logintable">
         <tr>
@@ -14,14 +22,24 @@
         </tr>
         <tr>
             <td>Username</td>
-            <td><input type="text" name="un" /></td>
+            <td>
+                <input type="text" name="name" />
+                @if ($errors->has('name'))
+                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                @endif
+            </td>
         </tr>
         <tr>
             <td></td>
         </tr>
         <tr>
             <td>Password</td>
-            <td><input type="password" name="pw" /></td>
+            <td>
+                <input type="password" name="password" />
+                @if ($errors->has('password'))
+                    <span class="text-danger">{{ $errors->first('password') }}</span>
+                @endif
+            </td>
         </tr>
         <tr>
             <td></td>

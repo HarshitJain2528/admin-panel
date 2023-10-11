@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ViewController extends Controller
 {
@@ -12,22 +13,40 @@ class ViewController extends Controller
     public function pagesummary(){
         return view('pagesummary');
     }
-    public function pageadd(){
-        return view('pageadd');
+    public function addpage(){
+        if(Auth::check()){
+            return view('pageadd');
+        }
+        return redirect("login")->withSuccess('Opps! You do not have access');
     }
     public function categorysummary(){
-        return view('categorysummary');
+        if(Auth::check()){
+            return view('categorysummary');
+        }
+        return redirect("login")->withSuccess('Opps! You do not have access');
     }
     public function addcategory(){
-        return view('categoryadd');
+        if(Auth::check()){
+            return view('categoryadd');
+        }
+        return redirect("login")->withSuccess('Opps! You do not have access');
     }
     public function productsummary(){
-        return view('productsummary');
+        if(Auth::check()){
+            return view('productsummary');
+        }
+        return redirect("login")->withSuccess('Opps! You do not have access');
     }
     public function productadd(){
-        return view('productadd');
+        if(Auth::check()){
+            return view('productadd');
+        }
+        return redirect("login")->withSuccess('Opps! You do not have access');
     }
     public function changepassword(){
-        return view('changepassword');
+        if(Auth::check()){
+            return view('changepassword');
+        }
+        return redirect("login")->withSuccess('Opps! You do not have access');
     }
 }

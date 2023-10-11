@@ -9,9 +9,9 @@
 			<!-- logo starts here -->
 			<img src="{{asset('asset/images/logo.jpg')}}"/>
 			<!-- logo ends here -->
-			@if (!request()->routeIs('login_form'))
+			@if (!request()->routeIs('login'))
 			<!-- Logout button starts here -->
-			<a href="{{ route('login_form') }}">
+			<a href="{{ Route('logout') }}">
 				<input type="button" value="Logout" />
 			</a>
 			<!-- Logout button ends here -->
