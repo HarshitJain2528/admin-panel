@@ -33,16 +33,24 @@
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
+            @foreach ($products as $product)
             <tr align="center">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{ $product->id }}</td>
+                <td>{{ $product->categoryname }}</td>
+                <td>{{ $product->pname }}</td>
+                <td>{{ $product->pdesc }}</td>
+                <td>{{ $product->pprice }}</td>
+                <td>
+                    @if($product->product_image)
+                        <img src="{{ asset('public/product_images/' . $product->product_image) }}" alt="Product Image" width="50">
+                    @else
+                        No Image
+                    @endif
+                </td>
                 <td><a href="productadd.php">Edit</a></td>
                 <td><a href="productsummary.php" class="delete">Delete</a></td>
             </tr>
+            @endforeach
         </table>
     </form>
 </div>

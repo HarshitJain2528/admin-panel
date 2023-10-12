@@ -7,12 +7,13 @@
     <h3>Category Manager</h3>
     <div class="addtable">
         <p class="add">Add Category</p>
-        <form method="get">
-        <input type="hidden" name="editid"/>
+        <form method="post" action="{{Route('insert.category')}}">
+            {{ csrf_field() }}
+            <input type="hidden" name="id" value="{{isset($findrec_category[0]->id) ? $findrec_category[0]->id:''}}">
             <table class="innertable">
                 <tr>
                     <td align="right">Category Name</td>
-                    <td><input type="text" name="catname" /></td>
+                    <td><input type="text" name="catname" value="{{isset($findrec_category[0]->categoryname) ? $findrec_category[0]->categoryname:''}}" /></td>
                 </tr>
             </table>
             <input type="Submit" value="Save" name="save" class="save"/>

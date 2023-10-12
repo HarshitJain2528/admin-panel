@@ -7,15 +7,17 @@
     <h3>Product Manager</h3>
     <div class="addtable">
         <p class="add">Add Product</p>
-        <form method="post" enctype="multipart/form-data">
-            <input type="hidden" name="editid"/>
+        <form method="post" enctype="multipart/form-data" action={{Route('insert.product')}}>
+            {{ csrf_field() }}
             <table class="innertable">
                 <tr>
                     <td align="right">Select Category</td>
                     <td>
-                        <select name="catname">
+                        <select name="category_id">
                             <option>&lt;select category&gt;</option>
-                                <option></option>
+                            @foreach ($categories as $rows)
+                                <option value="{{ $rows->id }}">{{$rows->categoryname}}</option>
+                            @endforeach
                         </select>
                     </td>
                 </tr>
@@ -33,7 +35,7 @@
                 </tr>
                 <tr>
                     <td align="right">Product Image</td>
-                    <td><input type="file" name="pimage"/></td>
+                    <td><input type="file" name="product_image"/></td>
                 </tr>
             </table>
             <input type="Submit" value="Save" name="save" class="save"/>

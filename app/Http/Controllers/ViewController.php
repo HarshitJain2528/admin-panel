@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\AddPage;
+use App\Models\Category;
+use App\Models\Product;
 class ViewController extends Controller
 {
     public function index(){
@@ -25,7 +27,8 @@ class ViewController extends Controller
     }
     public function categorysummary(){
         if(Auth::check()){
-            return view('categorysummary');
+            $catdata=Category::paginate(2); 
+            return view('categorysummary',compact('catdata'));
         }
         return redirect("login")->withSuccess('Opps! You do not have access');
     }
@@ -37,13 +40,15 @@ class ViewController extends Controller
     }
     public function productsummary(){
         if(Auth::check()){
-            return view('productsummary');
+            $products = Product::with('category')->paginate(2);
+            return view('productsummary',compact('products'));
         }
         return redirect("login")->withSuccess('Opps! You do not have access');
     }
     public function productadd(){
         if(Auth::check()){
-            return view('productadd');
+            $categories = Category::all();
+            return view('productadd', compact('categories'));
         }
         return redirect("login")->withSuccess('Opps! You do not have access');
     }

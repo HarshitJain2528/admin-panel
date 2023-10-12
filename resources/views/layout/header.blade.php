@@ -3,6 +3,33 @@
 		<title></title>
 		<link rel="stylesheet" href="{{asset('asset/css/style.css')}}"/>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+		<style>
+			.links{
+				height:50px;
+			}
+			.pagnation{
+				list-style:none;
+				padding:10px;
+				margin-top:60px;
+			}
+			.pagination li{ 
+				float: left;
+				list-style: none;
+				padding:5px;
+				border:1px solid #ccc;
+				position:relative;
+				top:0px;
+				left:246px;
+			}
+			.fas.fa-edit {
+				color: #007bff; /* Change color to blue */
+				font-size: 20px; /* Change font size to 20 pixels */
+			}
+			.fas.fa-trash-alt {
+				color: red;
+				font-size: 20px;
+			}
+		</style>
 	</head>
 	<body>
 		<!-- inner container starts here -->

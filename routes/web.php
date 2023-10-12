@@ -15,6 +15,8 @@ use App\Http\Controllers\CrudController;
 |
 */
 
+
+//view all the files
 Route::get('/login', [ViewController::class,'index'])->name('login');
 Route::get('/page-summary',[ViewController::class,'pagesummary'])->name('page_summary');
 Route::get('/add-page', [ViewController::class,'addpage'])->name('add_page');
@@ -28,5 +30,13 @@ Route::post('/postLogin',[AuthController::class,'postLogin'])->name('login.post'
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::post('/insert-page',[CrudController::class,'insert_page'])->name('insert.page');
-Route::get('delete-data/{id}',[CrudController::class,'delete_data']);
-Route::get('edit-data/{id}',[CrudController::class,'edit_display']);
+Route::get('delete-data/{id}',[CrudController::class,'delete_data_page']);
+Route::get('edit-data/{id}',[CrudController::class,'edit_display_page']);
+Route::post('/page-summary',[CrudController::class,'search_page'])->name('search.page');
+
+Route::post('/insert-category',[CrudController::class,'insert_category'])->name('insert.category');
+Route::get('delete-data-category/{id}',[CrudController::class,'delete_data_category']);
+Route::get('edit-data-category/{id}',[CrudController::class,'edit_display_category']);
+Route::post('/category-summary',[CrudController::class,'search_category'])->name('search.category');
+
+Route::post('/insert-product',[CrudController::class,'insert_product'])->name('insert.product');
