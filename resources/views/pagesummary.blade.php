@@ -21,7 +21,7 @@
         </table>
         <form>
         <p>Page 1 of 2, showing 4 records out of 8 total, starting on record 1, ending on 4</p>
-        <form method="get">
+        {{-- <form method="get"> --}}
             <table class="table">
                 <tr>
                     <th>ID</th>
@@ -31,15 +31,49 @@
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
-                <tr align="center">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><a href="pageadd.php">Edit</a></td>
-                    <td><a href="pagesummary.php" class="delete">Delete</a></td>
+                @foreach ($data as $row)
+                    <tr align="center">
+                        <td>{{$row->id}}</td>
+                        <td>{{$row->name}}</td>
+                        <td>{{$row->content}}</td>
+                        <td>{{$row->status}}</td>
+                        <td><a href="{{'edit-data/'.$row->id}}"><i class="fas fa-edit"></i>
+                        </a></td>
+                        <td><a href="{{'delete-data/'.$row->id}}" class="delete"><i class="fas fa-trash-alt"></i>
+                        </a></td>
+                    </tr>
+                @endforeach
+                <tr>
+                    <td colspan="6">{{$data->links('pagi')}}</td>
                 </tr>
             </table>
-        </form>
+        {{-- </form> --}}
     </div>
+    <style>
+        .links{
+            height:50px;
+        }
+        .pagnation{
+            list-style:none;
+            padding:10px;
+            margin-top:60px;
+        }
+        .pagination li{ 
+            float: left;
+            list-style: none;
+            padding:5px;
+            border:1px solid #ccc;
+            position:relative;
+            top:0px;
+            left:246px;
+        }
+        .fas.fa-edit {
+            color: #007bff; /* Change color to blue */
+            font-size: 20px; /* Change font size to 20 pixels */
+        }
+        .fas.fa-trash-alt {
+            color: red;
+            font-size: 20px;
+        }
+    </style>
 @endsection

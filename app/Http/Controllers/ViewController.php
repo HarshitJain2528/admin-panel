@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\AddPage;
 class ViewController extends Controller
 {
     public function index(){
         return view('index');
     }
     public function pagesummary(){
-        return view('pagesummary');
+        if(Auth::check()){
+            $data=AddPage::paginate(2);
+            return view('pagesummary',compact('data'));
+        }
+        return redirect("login")->withSuccess('Opps! You do not have access');
     }
     public function addpage(){
         if(Auth::check()){

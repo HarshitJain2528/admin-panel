@@ -22,15 +22,13 @@ class AuthController extends Controller
     
         if ($user && $user->password === $credentials['password']) {
             // Authentication successful
-            return redirect()->intended('add-page');
+            Auth::login($user); // Log in the user
+            return redirect()->route('add_page'); // Use the named route 'add_page'
         }
     
         // Authentication failed
-        return redirect("login")->withSuccess( 'Oops! You have entered invalid credentials');
+        return redirect()->route('login')->withSuccess('Oops! You have entered invalid credentials');
     }
-    
-    
-    
     public function logout() {
         Session::flush();
         Auth::logout();

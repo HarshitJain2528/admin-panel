@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CrudController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,3 +26,7 @@ Route::get('/change-password',[ViewController::class,'changepassword'])->name('c
 
 Route::post('/postLogin',[AuthController::class,'postLogin'])->name('login.post');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::post('/insert-page',[CrudController::class,'insert_page'])->name('insert.page');
+Route::get('delete-data/{id}',[CrudController::class,'delete_data']);
+Route::get('edit-data/{id}',[CrudController::class,'edit_display']);
