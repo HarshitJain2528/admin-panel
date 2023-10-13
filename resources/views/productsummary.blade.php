@@ -7,18 +7,19 @@
     <h3>Product Manager</h3>
     <p class="thisline">This section displays the list of Products</p>
     <p align="center" class="clickline"><a href="">Click here </a> to create <a href=""> New Product</a></p>
-    <form method="get" action="productsummary.php">
-    <table class="searchtable">
-        <tr>
-            <td colspan="2">Search</td>
-        </tr>
-        <tr>
-            <td colspan="2">Search By Category Product:
-                <input type="text" name="s"/>
-                <button type="submit" />Search</button>
-            </td>
-        </tr>
-    </table>
+    <form method="post" action="{{Route('search.product')}}">
+        {{ csrf_field() }}
+        <table class="searchtable">
+            <tr>
+                <td colspan="2">Search</td>
+            </tr>
+            <tr>
+                <td colspan="2">Search By Category Product:
+                    <input type="text" name="s_product"/>
+                    <button type="submit" >Search</button>
+                </td>
+            </tr>
+        </table>
     <form>
     <p>Page 1 of 2, showing 4 records out of 8 total, starting on record 1, ending on 4</p>
     <form method="get">
@@ -42,13 +43,13 @@
                 <td>{{ $product->pprice }}</td>
                 <td>
                     @if($product->product_image)
-                        <img src="{{ asset('public/product_images/' . $product->product_image) }}" alt="Product Image" width="50">
+                        <img src="{{ asset($product->product_image) }}" alt="Product Image" width="50" height="40">
                     @else
                         No Image
                     @endif
                 </td>
-                <td><a href="productadd.php">Edit</a></td>
-                <td><a href="productsummary.php" class="delete">Delete</a></td>
+                <td><a href="{{'edit-data-product/'.$product->id}}"><i class="fas fa-edit"></i></a></td>
+                <td><a href="{{'delete-data-product/'.$product->id}}" class="delete"><i class="fas fa-trash-alt"></a></td>
             </tr>
             @endforeach
         </table>

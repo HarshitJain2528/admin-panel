@@ -3,11 +3,17 @@
 <div class="left">
     @include('sidebar')
 </div> 
+@if (session('success'))
+<div class="danger-alert">
+    {{ session('success') }}
+</div>
+@endif
 <div class="right">
     <h3>Change Password</h3>
     <div class="addtable">
         <p class="add">Change Password</p>
-        <form method="post">
+        <form method="post" action="{{url('changepassword')}}">
+            {{ csrf_field() }}
             <table class="innertable">
                 <tr>
                     <td align="right">Enter Old Password</td>

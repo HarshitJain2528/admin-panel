@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\AddPage;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Login;
 class CrudController extends Controller
 {
     public function insert_page(Request $request){
@@ -107,14 +108,69 @@ class CrudController extends Controller
             $imagePath = $image->move('product_images', $customName, 'public');
         }
         if($request->isMethod('post')){
-            $product = new Product();
-            $product->category_id = $request->input('category_id');
-            $product->pname = $request->input('pname');
-            $product->pdesc = $request->input('pdesc');
-            $product->pprice = $request->input('pprice');
+            $product = new Product;
+            $product->category_id = $request->get('category_id');
+            $product->pname = $request->get('pname');
+            $product->pdesc = $request->get('pdesc');
+            $product->pprice = $request->get('pprice');
             $product->product_image = $imagePath;
             $product->save();
         }
-        return redirect('add-product');
+        return redirect('product-summary');
+    }
+
+    public function delete_data_product($id){
+        $product_delete=Product::find($id);
+        $product_delete->delete();
+        return redirect('/product-summary');
+    }
+    public function edit_data_product($id){
+        $findrec_product=Product::where('id',$id)->get();
+        return view('productadd',compact('findrec_product'));
+    }
+    public function edit_product(Request $request,$id=''){
+        $update=Product::find($id);
+        if($request->isMethod('post')){
+          $update->pname=$request->get('pname');   
+          $update->pdesc=$request->get('pdesc');   
+          $update->pprice=$request->get('pprice');
+          $update->save();   
+        }
+        return redirect('/product-summary');
+    }
+    public function change_password(Request $request){
+        // $data = new Login;
+        if($request->isMethod('post'))
+        {
+            $oldpw = $request->get('oldpass');
+            $newpw = $request->get('newpass');
+            $cnewp = $request->get('cnewpass');
+            if($newpw == $cnewp){
+                $data = Login::where('password',$oldpw)->first();
+                if(isset($data))
+                {
+                    $data->password = $newpw;
+                    $data->save();
+                    return redirect('/change-password')->withSuccess("Password Updated Successfully");
+                }
+                else
+                {
+                    return redirect('/change-password')->withSuccess("Old Password not match");
+                }
+                
+            }
+            else
+            {
+                return redirect('/change-password')->withSuccess( "New password and Confirm new password does not match");
+            }    
+                
+        }
+    }
+    public function search_product(Request $request){
+        if($request->isMethod('post')){
+            $search_product=$request->get('s_product');
+            $products=Product::where('pname','LIKE','%'.$search_product.'%')->paginate(6);
+        }
+        return view('productsummary',compact('products'));
     }
 }

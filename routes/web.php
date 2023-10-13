@@ -40,3 +40,9 @@ Route::get('edit-data-category/{id}',[CrudController::class,'edit_display_catego
 Route::post('/category-summary',[CrudController::class,'search_category'])->name('search.category');
 
 Route::post('/insert-product',[CrudController::class,'insert_product'])->name('insert.product');
+Route::get('delete-data-product/{id}',[CrudController::class,'delete_data_product']);
+Route::get('edit-data-product/{id}',[CrudController::class,'edit_data_product']);
+Route::post('edit-product/{id}',[CrudController::class,'edit_product']);
+Route::post('changepassword',[CrudController::class,'change_password']);
+
+Route::post('/product-summary',[CrudController::class,'search_product'])->name('search.product');
