@@ -17,45 +17,45 @@ class ViewController extends Controller
             $data=AddPage::paginate(2);
             return view('pagesummary',compact('data'));
         }
-        return redirect("login")->withSuccess('Opps! You do not have access');
+        return redirect("/")->withSuccess('Opps! You do not have access');
     }
     public function addpage(){
         if(Auth::check()){
             return view('pageadd');
         }
-        return redirect("login")->withSuccess('Opps! You do not have access');
+        return redirect("/")->withSuccess('Opps! You do not have access');
     }
     public function categorysummary(){
         if(Auth::check()){
             $catdata=Category::paginate(2); 
             return view('categorysummary',compact('catdata'));
         }
-        return redirect("login")->withSuccess('Opps! You do not have access');
+        return redirect("/")->withSuccess('Opps! You do not have access');
     }
     public function addcategory(){
         if(Auth::check()){
             return view('categoryadd');
         }
-        return redirect("login")->withSuccess('Opps! You do not have access');
+        return redirect("/")->withSuccess('Opps! You do not have access');
     }
     public function productsummary(){
         if(Auth::check()){
             $products = Product::with('category')->paginate(2);
             return view('productsummary',compact('products'));
         }
-        return redirect("login")->withSuccess('Opps! You do not have access');
+        return redirect("/")->withSuccess('Opps! You do not have access');
     }
     public function productadd(){
         if(Auth::check()){
             $categories = Category::all();
             return view('productadd', compact('categories'));
         }
-        return redirect("login")->withSuccess('Opps! You do not have access');
+        return redirect("/")->withSuccess('Opps! You do not have access');
     }
     public function changepassword(){
         if(Auth::check()){
             return view('changepassword');
         }
-        return redirect("login")->withSuccess('Opps! You do not have access');
+        return redirect("/")->withSuccess('Opps! You do not have access');
     }
 }

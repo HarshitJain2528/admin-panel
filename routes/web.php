@@ -17,7 +17,7 @@ use App\Http\Controllers\CrudController;
 
 
 //view all the files
-Route::get('/login', [ViewController::class,'index'])->name('login');
+Route::get('/', [ViewController::class,'index'])->name('login');
 Route::get('/page-summary',[ViewController::class,'pagesummary'])->name('page_summary');
 Route::get('/add-page', [ViewController::class,'addpage'])->name('add_page');
 Route::get('/category-summary',[ViewController::class,'categorysummary'])->name('category_summary');
@@ -43,6 +43,6 @@ Route::post('/insert-product',[CrudController::class,'insert_product'])->name('i
 Route::get('delete-data-product/{id}',[CrudController::class,'delete_data_product']);
 Route::get('edit-data-product/{id}',[CrudController::class,'edit_data_product']);
 Route::post('edit-product/{id}',[CrudController::class,'edit_product']);
-Route::post('changepassword',[CrudController::class,'change_password']);
-
 Route::post('/product-summary',[CrudController::class,'search_product'])->name('search.product');
+
+Route::post('changepassword',[CrudController::class,'change_password']);
