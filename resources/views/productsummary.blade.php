@@ -54,6 +54,9 @@
                 <td><a href="{{'delete-data-product/'.$product->id}}" class="delete"><i class="fas fa-trash-alt"></a></td>
             </tr>
             @endforeach
+            <tr>
+                <td colspan="9">{{$products->links('pagi')}}</td>
+            </tr>
         </table>
     </form>
 </div>
