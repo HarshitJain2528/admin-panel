@@ -41,6 +41,10 @@
                         <td align="right">Product Image</td>
                         <td><input type="file" name="product_image"/></td>
                     </tr>
+                    <tr>
+                        <td align="right">Product Stock</td>
+                        <td><input type="text" name="pstock"/></td>
+                    </tr>
                 @endif
             </table>
             <input type="Submit" value="Save" name="save" class="save"/>

@@ -30,6 +30,7 @@
                 <th>Product Name</th>
                 <th>Product Description</th>
                 <th>Product Price</th>
+                <th>Product Stock</th>
                 <th>Product Image</th>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -41,6 +42,7 @@
                 <td>{{ $product->pname }}</td>
                 <td>{{ $product->pdesc }}</td>
                 <td>{{ $product->pprice }}</td>
+                <td>{{ $product->pstock }}</td>
                 <td>
                     @if($product->product_image)
                         <img src="{{ asset($product->product_image) }}" alt="Product Image" width="50" height="40">
