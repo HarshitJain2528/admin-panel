@@ -113,6 +113,7 @@ class CrudController extends Controller
             $product->pname = $request->get('pname');
             $product->pdesc = $request->get('pdesc');
             $product->pprice = $request->get('pprice');
+            $product->pstock = $request->get('pstock');
             $product->product_image = $imagePath;
             $product->save();
         }
