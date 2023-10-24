@@ -1,12 +1,16 @@
 @extends('layout.main')
 @section('pagesummary')
+    {{-- left div starts  here --}}
     <div class="left">
-        @include('sidebar')
+        @include('layout.sidebar')
     </div>
+    {{-- left div ends here --}}
+    {{-- right div starts here --}}
     <div class="right">
         <h3>Page Manager</h3>
         <p class="thisline">This section displays the list of Pages</p>
         <p align="center" class="clickline"><a href="">Click here </a> to create <a href=""> New Page</a></p>
+        {{-- search form starts here --}}
         <form method="post" action="{{Route('search.page')}}">
             {{ csrf_field() }}
             <table class="searchtable">
@@ -21,7 +25,9 @@
                 </tr>
             </table>
         </form>
+        {{-- search form ends here --}}
         <p>Page 1 of 2, showing 4 records out of 8 total, starting on record 1, ending on 4</p>
+        {{-- pagesummary table starts here --}}
         <table class="table">
             <tr>
                 <th>ID</th>
@@ -47,5 +53,7 @@
                 <td colspan="6">{{$data->links('pagi')}}</td>
             </tr>
         </table>
+        {{-- pagesummary table ends here --}}
     </div>
+    {{-- right div ends here --}}
 @endsection

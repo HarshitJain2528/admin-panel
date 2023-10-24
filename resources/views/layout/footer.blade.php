@@ -1,5 +1,5 @@
-<!-- footer starts here -->
-<div class="footer"></div>
-<!-- footer ends here -->
-</body>
+        {{-- footer starts here  --}}
+        <div class="footer"></div>
+        {{-- footer ends here --}}
+    </body>
 </html>

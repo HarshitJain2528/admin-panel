@@ -22,8 +22,8 @@
 				left:246px;
 			}
 			.fas.fa-edit {
-				color: #007bff; /* Change color to blue */
-				font-size: 20px; /* Change font size to 20 pixels */
+				color: #007bff; 
+				font-size: 20px; 
 			}
 			.fas.fa-trash-alt {
 				color: red;
