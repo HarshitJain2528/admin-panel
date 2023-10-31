@@ -10,11 +10,20 @@ use App\Models\Login;
 
 class AuthController extends Controller
 {
+    /**
+     * Handle user login.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function postLogin(Request $request) {
+        // Validate the input fields
         $request->validate([
             'name' => 'required',
             'password' => 'required',
         ]);
+
+        // Retrieve user credentials from the request
         $credentials = $request->only('name', 'password');
     
         // Retrieve the user from the database based on the provided username
@@ -29,11 +38,17 @@ class AuthController extends Controller
         // Authentication failed
         return redirect()->route('login')->withSuccess('Oops! You have entered invalid credentials');
     }
+
+    /**
+     * Logout the user.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function logout() {
+        // Clear the user session and log them out
         Session::flush();
         Auth::logout();
   
         return Redirect('/');
     }
-    
 }
